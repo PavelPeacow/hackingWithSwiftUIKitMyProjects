@@ -14,7 +14,6 @@ class DetailViewController: UIViewController {
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentSize = view.bounds.size
         return scrollView
     }()
     
@@ -91,8 +90,6 @@ class DetailViewController: UIViewController {
 
         view.backgroundColor = .black
         
-
-        
         view.addSubview(scrollView)
         
         scrollView.addSubview(countryFlag)
@@ -109,25 +106,17 @@ class DetailViewController: UIViewController {
         
         setConstraints()
     }
-    
-    override func viewDidLayoutSubviews() {
-        
-        let rect = scrollView.subviews.reduce (CGRect.zero) {
-            $0.union($1.frame)
-        }
-        
-        scrollView.contentSize = rect.size
-    }
 }
 
 extension DetailViewController {
     
     func setConstraints() {
         NSLayoutConstraint.activate([
-            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
             
             countryFlag.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             countryFlag.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 30),
@@ -157,6 +146,7 @@ extension DetailViewController {
 
             countryLandlocked.topAnchor.constraint(equalTo: countryStatus.topAnchor, constant: 50),
             countryLandlocked.leadingAnchor.constraint(equalTo: countryDetails.layoutMarginsGuide.leadingAnchor),
+            countryLandlocked.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -50),
             
         ])
     }

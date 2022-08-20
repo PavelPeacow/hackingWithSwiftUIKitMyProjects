@@ -13,8 +13,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     lazy var collectionTable: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 120, height: 100)
-        
+        flowLayout.itemSize = CGSize(width: 100, height: 100)
+        flowLayout.sectionInsetReference = .fromSafeArea
+
         let collectionTable = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
         collectionTable.translatesAutoresizingMaskIntoConstraints = false
         collectionTable.register(CountryCollectionViewCell.self, forCellWithReuseIdentifier: CountryCollectionViewCell.identifier)

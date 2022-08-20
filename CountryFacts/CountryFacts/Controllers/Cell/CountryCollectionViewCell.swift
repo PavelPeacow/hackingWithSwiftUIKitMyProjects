@@ -33,7 +33,7 @@ class CountryCollectionViewCell: UICollectionViewCell {
         super.init(frame: .zero)
         
         contentView.backgroundColor = .orange
-        contentView.layer.cornerRadius = 30
+        contentView.layer.cornerRadius = 20
         
         contentView.addSubview(countryFlag)
         contentView.addSubview(countryName)
@@ -58,7 +58,8 @@ extension CountryCollectionViewCell {
             
             countryName.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             countryName.topAnchor.constraint(equalTo: countryFlag.bottomAnchor),
-            countryName.widthAnchor.constraint(equalToConstant: 100),
+            countryName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            countryName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             
         ])
     }
